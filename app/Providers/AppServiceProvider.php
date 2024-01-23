@@ -19,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        view()->composer('*', function($view) {
+            $userMenu = app('App\Http\Controllers\MenuController')->getUserMenu();
+            $view->with('userMenu', $userMenu);
+        });
     }
 }
